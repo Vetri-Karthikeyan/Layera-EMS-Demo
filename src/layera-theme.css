@@ -1,0 +1,670 @@
+@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap");
+
+:root {
+  --bg: #f5f6f8;
+  --surface: #ffffff;
+  --ink: #14161a;
+  --muted: #6b7280;
+  --border: #e2e4e9;
+  --primary: #2b3a67;
+  --primary-hover: #1f2b4d;
+  --accent: #e8a33d;
+  --accent-hover: #d6912c;
+  --danger: #dc2626;
+  --success: #16a34a;
+
+  --dept-eng: #2b3a67;
+  --dept-people: #b1584a;
+  --dept-finance: #16a34a;
+  --dept-sales: #e8a33d;
+  --dept-design: #6d4fc0;
+
+  --font-display: "Space Grotesk", system-ui, sans-serif;
+  --font-body: "Inter", system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", monospace;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-body);
+}
+
+.app-shell {
+  min-height: 100vh;
+}
+
+/* ---------- Header / signature mark ---------- */
+
+.app-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 32px;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+}
+
+.wordmark {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.wordmark__text {
+  display: flex;
+  flex-direction: column;
+  font-family: var(--font-display);
+}
+
+.wordmark__text strong {
+  font-size: 17px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+.wordmark__text span {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--muted);
+  letter-spacing: 0.02em;
+}
+
+/* The signature: three overlapping squares standing in for stacked
+   overlays — Layera's whole reason for existing. */
+.layer {
+  position: relative;
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+  border-radius: 5px;
+}
+
+.layer--1,
+.layer--2,
+.layer--3 {
+  margin-left: -9px;
+}
+
+.layer--1 {
+  margin-left: 0;
+  background: var(--primary);
+  z-index: 3;
+}
+
+.layer--2 {
+  background: var(--accent);
+  opacity: 0.9;
+  z-index: 2;
+}
+
+.layer--3 {
+  background: var(--dept-design);
+  opacity: 0.75;
+  z-index: 1;
+}
+
+/* ---------- Main layout ---------- */
+
+.header-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.app-main {
+  max-width: 920px;
+  margin: 0 auto;
+  padding: 32px;
+}
+
+.toolbar {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.search {
+  flex: 1;
+  padding: 10px 14px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  font-size: 14px;
+  font-family: var(--font-body);
+  background: var(--surface);
+}
+
+.search:focus,
+input:focus,
+select:focus,
+button:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 1px;
+}
+
+.loading-hint {
+  color: var(--muted);
+  font-family: var(--font-mono);
+  font-size: 13px;
+}
+
+/* ---------- Buttons ---------- */
+
+.btn {
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 14px;
+  padding: 10px 16px;
+  border-radius: 8px;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+
+.btn--primary {
+  background: var(--primary);
+  color: #fff;
+}
+.btn--primary:hover {
+  background: var(--primary-hover);
+}
+
+.btn--accent {
+  background: var(--accent);
+  color: #1a1200;
+}
+.btn--accent:hover {
+  background: var(--accent-hover);
+}
+
+.btn--ghost {
+  background: var(--surface);
+  color: var(--ink);
+  border-color: var(--border);
+}
+.btn--ghost:hover {
+  background: #f0f1f4;
+}
+
+/* ---------- Employee table ---------- */
+
+.employee-table {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.employee-row {
+  display: grid;
+  grid-template-columns: 2fr 1.1fr 1.6fr 1.2fr;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 20px;
+  border-bottom: 1px solid var(--border);
+}
+
+.employee-row:last-child {
+  border-bottom: none;
+}
+
+.employee-row--head {
+  background: #fafbfc;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  color: var(--muted);
+  text-transform: uppercase;
+}
+
+.employee-identity {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.avatar {
+  width: 34px;
+  height: 34px;
+  border-radius: 8px;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-display);
+  font-size: 12px;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.employee-name {
+  display: block;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.employee-role {
+  display: block;
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.dept-tag {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  padding: 3px 8px;
+  border-radius: 5px;
+  border: 1px solid;
+  background: #fff;
+}
+
+.employee-email {
+  font-size: 13px;
+  color: var(--muted);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.employee-actions {
+  display: flex;
+  gap: 8px;
+  justify-content: flex-end;
+}
+
+.align-right {
+  text-align: right;
+}
+
+.icon-btn {
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 500;
+  padding: 6px 10px;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  cursor: pointer;
+}
+
+.icon-btn:hover {
+  background: #f0f1f4;
+}
+
+.icon-btn--danger {
+  color: var(--danger);
+  border-color: #f4c6c1;
+}
+
+.icon-btn--danger:hover {
+  background: #fdf1f0;
+}
+
+.icon-btn:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+
+/* ---------- Empty state ---------- */
+
+.empty-state {
+  text-align: center;
+  padding: 64px 24px;
+  border: 1px dashed var(--border);
+  border-radius: 12px;
+  background: var(--surface);
+}
+
+.empty-state__mark {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 16px;
+}
+
+.empty-state h3 {
+  font-family: var(--font-display);
+  margin: 0 0 6px;
+}
+
+.empty-state p {
+  color: var(--muted);
+  margin: 0;
+  font-size: 14px;
+}
+
+/* ---------- Custom dialog (Add/Edit) ---------- */
+/* Layera's built-in confirm/prompt/alert ship their own styles;
+   this is for the custom EmployeeFormDialog only. */
+
+.layera-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(20, 22, 26, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.layera-card {
+  background: var(--surface);
+  border-radius: 14px;
+  padding: 28px;
+  width: 400px;
+  max-width: 90vw;
+  font-family: var(--font-body);
+}
+
+/* Signature echoed in the dialog: a stacked triple-shadow, as if this
+   card is one of several sitting on top of each other. */
+.layera-card--stacked {
+  box-shadow:
+    0 1px 0 1px var(--border),
+    8px 8px 0 -2px rgba(232, 163, 61, 0.35),
+    16px 16px 0 -4px rgba(43, 58, 103, 0.18);
+}
+
+.layera-card__eyebrow {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--accent-hover);
+  margin-bottom: 6px;
+}
+
+.layera-card__title {
+  font-family: var(--font-display);
+  font-size: 18px;
+  margin: 0 0 18px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 13px;
+  font-weight: 500;
+  margin-bottom: 14px;
+  color: var(--ink);
+}
+
+.field input,
+.field select {
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 400;
+  padding: 9px 11px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+}
+
+.field-error {
+  color: var(--danger);
+  font-size: 13px;
+  margin: -4px 0 14px;
+}
+
+.layera-card__actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+/* ---------- Before/After compare dialog ---------- */
+
+.compare-card {
+  background: var(--surface);
+  border-radius: 14px;
+  padding: 28px;
+  width: 640px;
+  max-width: 92vw;
+  max-height: 85vh;
+  overflow-y: auto;
+  font-family: var(--font-body);
+}
+
+.compare-card__header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 18px;
+}
+
+.compare-tabs {
+  display: flex;
+  gap: 4px;
+  background: #f0f1f4;
+  border-radius: 8px;
+  padding: 4px;
+  margin-bottom: 14px;
+  width: fit-content;
+}
+
+.compare-tab {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 500;
+  padding: 7px 14px;
+  border-radius: 6px;
+  border: none;
+  background: transparent;
+  color: var(--muted);
+  cursor: pointer;
+}
+
+.compare-tab--active {
+  background: var(--surface);
+  color: var(--ink);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08);
+}
+
+.compare-title {
+  font-family: var(--font-display);
+  font-size: 15px;
+  margin: 0 0 12px;
+  color: var(--ink);
+}
+
+.compare-subtabs {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 12px;
+  border-bottom: 1px solid var(--border);
+}
+
+.compare-subtab {
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 500;
+  padding: 8px 2px;
+  border: none;
+  border-bottom: 2px solid transparent;
+  background: transparent;
+  color: var(--muted);
+  cursor: pointer;
+}
+
+.compare-subtab--active {
+  color: var(--primary);
+  border-bottom-color: var(--primary);
+}
+
+.compare-note {
+  margin: 16px 0 0;
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.6;
+  border-top: 1px solid var(--border);
+  padding-top: 14px;
+}
+
+/* ---------- Code block ---------- */
+
+.code-block {
+  margin: 0;
+  background: #14161f;
+  border-radius: 10px;
+  padding: 16px 18px;
+  overflow-x: auto;
+  font-family: var(--font-mono);
+  font-size: 12.5px;
+  line-height: 1.7;
+}
+
+.code-block code {
+  display: block;
+}
+
+.code-line {
+  white-space: pre;
+  color: #d6d9e0;
+  padding: 0 8px;
+  margin: 0 -8px;
+  border-radius: 4px;
+}
+
+.code-line--marked {
+  background: rgba(232, 163, 61, 0.14);
+}
+
+.tok-keyword {
+  color: #7aa2f7;
+}
+.tok-string {
+  color: #9ece6a;
+}
+.tok-comment {
+  color: #6b7280;
+  font-style: italic;
+}
+.tok-number {
+  color: #e8a33d;
+}
+.tok-punct {
+  color: #a9b1d6;
+}
+.tok-plain {
+  color: #d6d9e0;
+}
+
+/* ---------- Footer ---------- */
+
+.app-footer {
+  max-width: 920px;
+  margin: 40px auto 0;
+  padding: 28px 0 40px;
+  border-top: 1px solid var(--border);
+}
+
+.footer-split {
+  display: grid;
+  grid-template-columns: 1.3fr 1fr;
+  gap: 32px;
+  margin-bottom: 16px;
+}
+
+.footer-brand {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.footer-mark {
+  display: flex;
+  margin-bottom: 12px;
+}
+
+.footer-blurb {
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--ink);
+  max-width: 340px;
+  margin: 0 0 16px;
+}
+
+.footer-install {
+  display: inline-flex;
+  align-items: center;
+  gap: 30px;
+  background: #2a2a2a;
+  border: 1px solid var(--border);
+  border-radius: 15px;
+  padding: 8px 10px 8px 14px;
+  cursor: pointer;
+  font-family: var(--font-body);
+}
+
+.footer-install:hover {
+  background: #2a2a2a;
+}
+
+.footer-install__label {
+  font-size: 13px;
+  color: white;
+}
+
+.footer-install code {
+  font-family: var(--font-display);
+  font-size: 16.5px;
+  color: greenyellow;
+}
+
+.footer-install__icon {
+  display: flex;
+  align-items: center;
+  color: white;
+  padding: 6px;
+  border-radius: 5px;
+}
+
+.footer-install:hover .footer-install__icon {
+  color: greenyellow;
+}
+
+.footer-links {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 16px;
+  font-family: var(--font-body);
+  font-size: 12.5px;
+  padding-top: 4px;
+}
+
+.footer-links a {
+  color: var(--primary);
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.footer-links a:hover {
+  text-decoration: underline;
+}
+
+.footer-links svg {
+  font-size: 18px;
+}
+
+.footer-docs-link {
+  font-weight: 600;
+  color: var(--accent-hover) !important;
+  margin-top: 2px;
+  font-size: 15px;
+}
+
+.footer-note {
+  font-size: 12px;
+  color: var(--muted);
+  margin: 0;
+  float: inline-end;
+}
